@@ -19,6 +19,6 @@ public class Blog extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String responseText = "Hello, " + fname + " " + lname + ". According to our records your email is " + email + ", and your phone number is " + phone;
-        response.getWriter().write(responseText);
+//        response.getWriter().write(responseText);
     }
 }
