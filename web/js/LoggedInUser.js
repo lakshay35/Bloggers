@@ -7,12 +7,3 @@
 //
 // });
 //
-$("#logoutButton").onclick(function() {
-    $.ajax({
-        url: "Blog",
-        method: "post",
-        data: {
-            "logout": "logout"
-        }
-    });
-});

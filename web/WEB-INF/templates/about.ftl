@@ -21,16 +21,33 @@
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()"
        class="w3-bar-item w3-button">Close Menu</a>
-    <a href="login.html" onclick="w3_close()" class="w3-bar-item w3-button">Login</a>
-    <a href="about.html" onclick="w3_close()" class="w3-bar-item w3-button">About</a>
-    <a href="index.html" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+    <#if name?has_content>
+        <form action="Blog" method="get">
+            <button name="logoutButton" class="w3-bar-item w3-button">Sign Out</button>
+            <button name="aboutButton" class="w3-bar-item w3-button">About</button>
+            <button name="homepageButton" class="w3-bar-item w3-button">Home</button>
+        </form>
+    <#else>
+        <a href="signin.html" class="w3-bar-item w3-button">Sign In</a>
+        <form action="Blog" method="get">
+            <button name="aboutButton" class="w3-bar-item w3-button">About</button>
+        </form>
+        <a href="index.html" class="w3-bar-item w3-button">Home</a>
+    </#if>
 </nav>
 
 <!-- Top menu -->
 <div class="w3-top">
     <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <#if name?has_content>
         <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()"><div class="menu"></div><div class="menu"></div><div class="menu"></div></div>
+        <div class="w3-right w3-padding-16"><span style="text-decoration: none">Hello, ${name}</span></div>
         <div class="w3-center w3-padding-16">About</div>
+    <#else>
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()"><div class="menu"></div><div class="menu"></div><div class="menu"></div></div>
+        <div class="w3-right w3-padding-16"><span style="text-decoration: none">B</span></div>
+        <div class="w3-center w3-padding-16">About</div>
+    </#if>
     </div>
 </div>
 

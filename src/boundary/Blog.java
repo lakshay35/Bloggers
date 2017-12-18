@@ -31,11 +31,20 @@ public class Blog extends HttpServlet {
 
         String login = request.getParameter("login");
         String checkIfUserExists = request.getParameter("checkIfUserExists");
+        String logout = request.getParameter("logoutButton");
+        String about = request.getParameter("aboutButton");
+        String homepage = request.getParameter("homepageButton");
 
         if(login != null) {
             loginUser(request, response);
         } else if(checkIfUserExists != null) {
             checkIfUserExists(request, response);
+        } else if(logout != null) {
+            logUserOut(request, response);
+        } else if(about != null) {
+            openAboutPage(request, response);
+        } else if(homepage != null) {
+            openHomePage(request, response);
         }
     }
 
@@ -74,9 +83,9 @@ public class Blog extends HttpServlet {
                 root.put("name", name);
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
-                processor.process("LoggedInUser.ftl", root, response);
+                processor.process("homepage.ftl", root, response);
             } else if(i == 0){
-                response.sendRedirect("login.html");
+                response.sendRedirect("signin.html");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -113,12 +122,32 @@ public class Blog extends HttpServlet {
     }
 
     private void logUserOut(HttpServletRequest request, HttpServletResponse response) {
-        request.getSession(false).invalidate();
+        request.getSession().invalidate();
         try {
             response.sendRedirect("index.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void openAboutPage(HttpServletRequest request, HttpServletResponse response) {
+        TemplateProcessor processor = new TemplateProcessor("WEB-INF/templates", getServletContext());
+        HashMap root = new HashMap();
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            root.put("name", session.getAttribute("name"));
+        }
+        processor.process("about.ftl", root, response);
+    }
+
+    private void openHomePage(HttpServletRequest request, HttpServletResponse response) {
+        TemplateProcessor processor = new TemplateProcessor("WEB-INF/templates", getServletContext());
+        HashMap root = new HashMap();
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            root.put("name", session.getAttribute("name"));
+        }
+        processor.process("homepage.ftl", root, response);
     }
 
 }

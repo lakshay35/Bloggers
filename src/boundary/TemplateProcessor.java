@@ -5,7 +5,6 @@ import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
