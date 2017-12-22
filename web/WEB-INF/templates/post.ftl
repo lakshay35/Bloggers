@@ -21,20 +21,20 @@
 <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()"
        class="w3-bar-item w3-button">Close Menu</a>
-    <#if name?has_content>
-        <form action="Blog" method="get">
-            <button name="logoutButton" class="w3-bar-item w3-button">Sign Out</button>
-            <button name="aboutButton" class="w3-bar-item w3-button">About</button>
-            <button name="homepageButton" class="w3-bar-item w3-button">Home</button>
-            <button name="profileButton" class="w3-bar-item w3-button">Profile</button>
-        </form>
-    <#else>
-        <a href="signin.html" class="w3-bar-item w3-button">Sign In</a>
-        <form action="Blog" method="get">
-            <button name="aboutButton" class="w3-bar-item w3-button">About</button>
-        </form>
-        <a href="index.html" class="w3-bar-item w3-button">Home</a>
-    </#if>
+<#if name?has_content>
+    <form action="Blog" method="get">
+        <button name="logoutButton" class="w3-bar-item w3-button">Sign Out</button>
+        <button name="aboutButton" class="w3-bar-item w3-button">About</button>
+        <button name="homepageButton" class="w3-bar-item w3-button">Home</button>
+        <button name="profileButton" class="w3-bar-item w3-button">Profile</button>
+    </form>
+<#else>
+    <a href="signin.html" class="w3-bar-item w3-button">Sign In</a>
+    <form action="Blog" method="get">
+        <button name="aboutButton" class="w3-bar-item w3-button">About</button>
+    </form>
+    <a href="index.html" class="w3-bar-item w3-button">Home</a>
+</#if>
 </nav>
 
 <!-- Top menu -->
@@ -55,21 +55,12 @@
 <!-- !PAGE CONTENT! -->
 <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
-    <div>
-        Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        <ul>
-            <li>Lorem</li>
-            <li>Ipsum</li>
-            <li>Dimsum</li>
-        </ul>
-        More Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        More Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-        Lorem ipsum dimsum I want to blog about dimsum cause I have become disum by eating lorem ipsum dimsum.
-    </div>
+    <form action="Blog" method="post">
+        <span>Title:<input style="margin-left: 2em; margin-bottom: 2%"  type="text" name="title"/></span><br>
+        <span>Post:</span><br>
+        <textarea rows="30" cols="150" name="post"></textarea>
+        <input type="submit" name="blogPost" value="Post"/><br/>
+    </form>
     <hr id="about">
 
     <!-- Footer -->

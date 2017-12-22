@@ -19,6 +19,7 @@ public class Blog extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String signUp = request.getParameter("signUp");
         String logout = request.getParameter("logout");
+        String blogPost = request.getParameter("blogPost");
 
         if(signUp!= null) {
             registerNewUser(request, response);
@@ -34,6 +35,7 @@ public class Blog extends HttpServlet {
         String logout = request.getParameter("logoutButton");
         String about = request.getParameter("aboutButton");
         String homepage = request.getParameter("homepageButton");
+        String profile = request.getParameter("profileButton");
 
         if(login != null) {
             loginUser(request, response);
@@ -45,6 +47,8 @@ public class Blog extends HttpServlet {
             openAboutPage(request, response);
         } else if(homepage != null) {
             openHomePage(request, response);
+        } else if(profile != null) {
+            openProfilePage(request, response);
         }
     }
 
@@ -81,6 +85,7 @@ public class Blog extends HttpServlet {
                 HashMap root = new HashMap();
                 String name = user.retrieveName();
                 root.put("name", name);
+                root.put("username", username);
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
                 processor.process("homepage.ftl", root, response);
@@ -150,4 +155,26 @@ public class Blog extends HttpServlet {
         processor.process("homepage.ftl", root, response);
     }
 
+    private void openProfilePage(HttpServletRequest request, HttpServletResponse response) {
+        TemplateProcessor processor = new TemplateProcessor("WEB-INF/templates", getServletContext());
+        HttpSession session = request.getSession(false);
+        User user = UserDA.retrieveDetails((String)session.getAttribute("username"));
+        String lname = user.getLname();
+        if(lname == null) {
+            System.out.println("lname is null");
+        }
+
+        HashMap root = new HashMap();
+        root.put("fname", user.getFname());
+        root.put("lname", user.getLname());
+        root.put("email", user.getEmail());
+        root.put("username", user.getUsername());
+        root.put("contact", user.getContact());
+        try {
+            processor.process("profile.ftl", root, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }

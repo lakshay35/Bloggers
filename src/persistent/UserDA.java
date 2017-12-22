@@ -5,7 +5,12 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import object.User;
 import org.bson.Document;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 public class UserDA {
 
@@ -75,6 +80,20 @@ public class UserDA {
         if(document == null) {
             return null;
         }
-        return document.get("fname").toString();
+        return document.getString("fname");
+    }
+
+    public static User retrieveDetails(String username) {
+        BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.append("username", username);
+        FindIterable<Document> iterable = customers.find(whereQuery);
+        Document document = iterable.first();
+        if(document == null) {
+            return null;
+        }
+
+
+        User user = new User(document.getString("fname"), document.getString("lname"), document.getString("email"), document.getString("username"), document.getString("password"), document.getLong("contact"));
+        return user;
     }
 }

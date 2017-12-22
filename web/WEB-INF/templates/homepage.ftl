@@ -28,6 +28,7 @@
         <button name="logoutButton" class="w3-bar-item w3-button">Sign Out</button>
         <button name="aboutButton" class="w3-bar-item w3-button">About</button>
         <button name="homepageButton" class="w3-bar-item w3-button">Home</button>
+        <button name="profileButton" class="w3-bar-item w3-button">Profile</button>
     </form>
 <#else>
     <a href="signin.html" class="w3-bar-item w3-button">Sign In</a>
