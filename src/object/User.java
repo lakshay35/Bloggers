@@ -2,6 +2,8 @@ package object;
 
 import persistent.UserDA;
 
+import java.util.HashMap;
+
 public class User {
 
     private String fname;
@@ -23,6 +25,10 @@ public class User {
     public User(String username, String password) {
         this.setUsername(username);
         this.setPassword(password);
+    }
+
+    public User(String username) {
+        this.setUsername(username);
     }
 
     public String getFname() {
@@ -89,6 +95,4 @@ public class User {
     public String retrieveName() {
         return UserDA.retrieveName(this.username);
     }
-
-
 }
